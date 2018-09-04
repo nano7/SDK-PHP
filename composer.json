@@ -1,0 +1,27 @@
+{
+    "name"       : "nano7/sdk-php",
+    "description": "SDK PHP by Nano7.",
+    "license"    : "GPL-3.0-only",
+
+    "authors": [
+        {
+            "name" : "Bruno Goncalves",
+            "email": "bugotech@gmail.com"
+        }
+    ],
+
+    "require": {
+        "php"               : ">=5.5.0",
+        "nano7/foundation"  : "dev-master",
+        "guzzlehttp/guzzle" : "6.3.*"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "Nano7\\Sdk\\": "src/"
+        }
+    },
+
+    "minimum-stability": "dev",
+    "prefer-stable"    : true
+}
