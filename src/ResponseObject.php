@@ -172,9 +172,11 @@ class ResponseObject
     }
 
     /**
+     * Retorna uma data e hora.
+     *
      * @return null|Carbon
      */
-    protected function getCreatedAtAttr($value)
+    protected function toDate($value)
     {
         if (! is_null($value)) {
             return Carbon::createFromFormat(Carbon::ISO8601, $value);
@@ -186,13 +188,17 @@ class ResponseObject
     /**
      * @return null|Carbon
      */
+    protected function getCreatedAtAttr($value)
+    {
+        return $this->toDate($value);
+    }
+
+    /**
+     * @return null|Carbon
+     */
     protected function getUpdatedAtAttr($value)
     {
-        if (! is_null($value)) {
-            return Carbon::createFromFormat(Carbon::ISO8601, $value);
-        }
-
-        return $value;
+        return $this->toDate($value);
     }
 
     /**
