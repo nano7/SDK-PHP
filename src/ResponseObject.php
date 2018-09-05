@@ -186,6 +186,27 @@ class ResponseObject
     }
 
     /**
+     * Update values.
+     *
+     * @param array $values
+     * @return bool
+     */
+    protected function toUpdate($resource, array $values, $except = [])
+    {
+        $data = Arr::except($values, $except);
+
+        $ret = $this->client->responseJson($this->client->request('put', $this->client->uri($resource, [$this->id]), [
+            'json' => $data,
+        ]));
+
+        if ($ret['success']) {
+            $this->data = array_merge([], $this->data, $data);
+        }
+
+        return $ret['success'];
+    }
+
+    /**
      * @return null|Carbon
      */
     protected function getCreatedAtAttr($value)
