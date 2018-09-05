@@ -207,6 +207,18 @@ class ResponseObject
     }
 
     /**
+     * Delete document.
+     *
+     * @return bool
+     */
+    protected function toDelete($resource)
+    {
+        $ret = $this->client->responseJson($this->client->request('delete', $this->client->uri($resource, [$this->id])));
+
+        return $ret['success'];
+    }
+
+    /**
      * @return null|Carbon
      */
     protected function getCreatedAtAttr($value)
