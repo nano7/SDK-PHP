@@ -20,11 +20,6 @@ class SdkClient
     /**
      * @var array
      */
-    protected $versions = ['1'];
-
-    /**
-     * @var array
-     */
     protected $endpoints = [
         'production' => '', // http://api.com/{version}
         'sandbox' => '', // http://api.sandbox.api.com/{version}
@@ -97,7 +92,6 @@ class SdkClient
         $resource = is_null($part) ? '%s%s' : '%s/%s%s';
 
         $url = sprintf($resource, $this->getEndPoint(), $part, $params);
-        $url = str_replace('{version}', $this->getVersion(), $url);
 
         return $url;
     }
@@ -238,33 +232,5 @@ class SdkClient
         }
 
         throw new \Exception($message, $code);
-    }
-
-    /**
-     * @return string
-     * @throws \Exception
-     */
-    protected function getVersion()
-    {
-        $version = $this->config('version', 'latest');
-        $version = ($version == 'latest') ? $this->getLastVersion() : $version;
-
-        if (! in_array($version, $this->versions)) {
-            throw new \Exception(sprintf("Invalid api version %s (%s)", $version));
-        }
-
-        return $version;
-    }
-
-    /**
-     * @return string
-     */
-    protected function getLastVersion()
-    {
-        if (count($this->versions) == 0) {
-            return '';
-        }
-
-        return Arr::last($this->versions);
     }
 }
