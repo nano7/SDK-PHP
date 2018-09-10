@@ -1,8 +1,8 @@
 <?php namespace Nano7\Sdk;
 
-use Nano7\Foundation\Support\Arr;
-use Nano7\Foundation\Support\Str;
-use Nano7\Foundation\Support\Carbon;
+use Nano7\Support\Arr;
+use Nano7\Support\Str;
+use Nano7\Support\Carbon;
 use Psr\Http\Message\ResponseInterface;
 
 class ResponseObject

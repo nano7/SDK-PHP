@@ -1,6 +1,6 @@
 <?php namespace Nano7\Sdk;
 
-use Nano7\Foundation\Support\Arr;
+use Nano7\Support\Arr;
 
 abstract class Service
 {

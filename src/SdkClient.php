@@ -1,8 +1,8 @@
 <?php namespace Nano7\Sdk;
 
+use Nano7\Support\Arr;
 use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\SetCookie;
-use Nano7\Foundation\Support\Arr;
 use Psr\Http\Message\ResponseInterface;
 
 class SdkClient
