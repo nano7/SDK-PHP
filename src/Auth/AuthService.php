@@ -1,7 +1,7 @@
 <?php namespace Nano7\Sdk\Auth;
 
 use Nano7\Sdk\Service;
-use VCA\Sdk\User\UserResponse;
+use Nano7\Sdk\ResponseObject;
 
 class AuthService extends Service
 {
@@ -50,11 +50,11 @@ class AuthService extends Service
      * Fazer login pelo token e retorn o usuario.
      *
      * @param $access_token
-     * @return UserResponse
+     * @return ResponseObject
      */
     public function loginByToken($access_token)
     {
-        $user = new UserResponse($this->client, $this->client->request('get', $this->uri('check', [$access_token])));
+        $user = new ResponseObject($this->client, $this->client->request('get', $this->uri('check', [$access_token])));
 
         $this->client->config(['access_token' => $access_token]);
 
@@ -79,11 +79,11 @@ class AuthService extends Service
     /**
      * User logged.
      *
-     * @return UserResponse
+     * @return ResponseObject
      */
     public function me()
     {
-        return new UserResponse($this->client, $this->client->request('get', $this->uri('me')));
+        return new ResponseObject($this->client, $this->client->request('get', $this->uri('me')));
     }
 
     /**

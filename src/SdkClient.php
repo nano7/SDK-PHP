@@ -1,5 +1,6 @@
 <?php namespace Nano7\Sdk;
 
+use Nano7\Sdk\Auth\AuthService;
 use Nano7\Support\Arr;
 use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\SetCookie;
@@ -53,6 +54,18 @@ class SdkClient
         //if ($accessToken !== false) {
         //    $this->config(['access_token_original' => $accessToken]);
         //}
+    }
+
+    /**
+     * @return AuthService
+     */
+    public function auth()
+    {
+        return $this->toService('auth', function() {
+            return new AuthService($this, [
+                'endpoint' => $this->uri('auth'),
+            ]);
+        });
     }
 
     /**
