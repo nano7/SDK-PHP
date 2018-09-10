@@ -28,6 +28,13 @@ class SdkClient
     /**
      * @var array
      */
+    protected $headers = [
+        'Accept' => 'application/json',
+    ];
+
+    /**
+     * @var array
+     */
     protected $services = [];
 
     /**
@@ -37,7 +44,7 @@ class SdkClient
     {
         $this->config = $config;
 
-        $config_http = Arr::get($config, 'http', []);
+        $config_http = Arr::get($config, 'http', ['headers' => $this->headers]);
 
         $this->client = new Client($config_http);
 
