@@ -148,7 +148,7 @@ class SdkClient
     {
         $this->prepareOptions($method, $options);
 
-        $response = $this->client->request($method, $uri, $options);
+        $response = $this->client->requestAsync($method, $uri, $options);
 
         $this->testResponseError($response);
 
