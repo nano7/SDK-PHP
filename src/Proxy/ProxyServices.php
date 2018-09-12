@@ -1,11 +1,9 @@
 <?php namespace Nano7\Sdk\Proxy;
 
-use GuzzleHttp\Client;
-
 class ProxyServices
 {
     /**
-     * @var Client
+     * @var ProxyClient
      */
     protected $client;
 
@@ -34,7 +32,7 @@ class ProxyServices
     public function __construct(ProxyStorage $storage, $httpConfig = [])
     {
         $this->storage = $storage;
-        $this->client = new Client($httpConfig);
+        $this->client = new ProxyClient($httpConfig);
     }
 
     /**
