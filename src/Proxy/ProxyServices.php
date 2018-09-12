@@ -61,12 +61,12 @@ class ProxyServices
                 $response->source = $serv_id;
 
                 // Guardar no controle de cache
-                $this->storage->storeInCache($request, $response);
+                $this->storage->storeInCache($request, $response->toStore());
 
                 // Marcar como atual
                 $this->storage->setCurrent($serv_id);
 
-                return $response;
+                return $response->toResponse();
             }
         }
 
@@ -78,7 +78,7 @@ class ProxyServices
      *
      * @param $info
      * @param $request
-     * @return bool|mixed
+     * @return bool|ServiceResponde
      */
     protected function resolveService($info, $request)
     {
@@ -86,7 +86,12 @@ class ProxyServices
             $url = $info['url'];
             $callback = $info['callback'];
 
-            return call_user_func_array($callback, [$this->client, $url, $request]);
+            $ret = call_user_func_array($callback, [$this->client, $url, $request]);
+            if (! ($ret instanceof ServiceResponde)) {
+                throw new \Exception("Return is not ServiceResponde");
+            }
+
+            return $ret;
         } catch (\Exception $e) {
             return false;
         }
